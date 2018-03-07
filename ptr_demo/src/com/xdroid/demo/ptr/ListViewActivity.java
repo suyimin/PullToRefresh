@@ -25,9 +25,9 @@ import java.util.List;
  * ListView with loadmore
  */
 public class ListViewActivity extends AppCompatActivity {
-    PtrClassicFrameLayout ptrClassicFrameLayout;
+    PtrClassicFrameLayout ptrLayout;
     ListView mListView;
-    private List<String> mData = new ArrayList<String>();
+    private List<String> mData = new ArrayList<>();
     private ListViewAdapter mAdapter;
     Handler handler = new Handler();
 
@@ -37,7 +37,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview_layout);
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
+        ptrLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         mListView = (ListView) this.findViewById(R.id.test_list_view);
         initData();
     }
@@ -46,16 +46,14 @@ public class ListViewActivity extends AppCompatActivity {
         mAdapter = new ListViewAdapter(this, mData);
         mListView.setAdapter(mAdapter);
 
-        // set auto load more disable,default available
-//        ptrClassicFrameLayout.setAutoLoadMoreEnable(false);
-        ptrClassicFrameLayout.postDelayed(new Runnable() {
+        ptrLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ptrClassicFrameLayout.autoRefresh(true);
+                ptrLayout.autoRefresh(true);
             }
         }, 150);
 
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+        ptrLayout.setPtrHandler(new PtrDefaultHandler() {
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -65,13 +63,13 @@ public class ListViewActivity extends AppCompatActivity {
                         page = 0;
                         mData.clear();
                         for (int i = 0; i < 17; i++) {
-                            mData.add(new String("  ListView item  -" + i));
+                            mData.add(new String("ListView item " + i));
                         }
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.refreshComplete();
+                        ptrLayout.refreshComplete();
 
-                        if (!ptrClassicFrameLayout.isLoadMoreEnable()) {
-                            ptrClassicFrameLayout.setLoadMoreEnable(true);
+                        if (!ptrLayout.isLoadMoreEnable()) {
+                            ptrLayout.setLoadMoreEnable(true);
                         }
                     }
                 }, 1500);
@@ -79,7 +77,7 @@ public class ListViewActivity extends AppCompatActivity {
         });
 
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+        ptrLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
 
             @Override
             public void loadMore() {
@@ -87,16 +85,16 @@ public class ListViewActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        mData.add(new String("  ListView item  - add " + page));
+                        mData.add(new String("Load more " + page));
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.loadMoreComplete(true);
+                        ptrLayout.loadMoreComplete(true);
                         page++;
-                        Toast.makeText(ListViewActivity.this, "load more complete", Toast.LENGTH_SHORT)
+                        Toast.makeText(ListViewActivity.this, "Load more complete", Toast.LENGTH_SHORT)
                                 .show();
 
-                        if (page == 1) {
+                        if (page == 2) {
                             //set load more disable
-//                            ptrClassicFrameLayout.setLoadMoreEnable(false);
+                            ptrLayout.setLoadMoreEnable(false);
                         }
                     }
                 }, 1000);
@@ -137,10 +135,6 @@ public class ListViewActivity extends AppCompatActivity {
             TextView textView = (TextView) convertView;
             textView.setText(datas.get(position));
             return convertView;
-        }
-
-        public List<String> getData() {
-            return datas;
         }
 
     }

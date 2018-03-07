@@ -25,7 +25,7 @@ import java.util.List;
  * GridView with loadmore
  */
 public class GridViewAtivity extends AppCompatActivity {
-    PtrClassicFrameLayout ptrClassicFrameLayout;
+    PtrClassicFrameLayout ptrLayout;
     GridViewWithHeaderAndFooter mGridView;
     GridViewAdapter mAdapter;
     private List<String> mData = new ArrayList<>();
@@ -37,7 +37,7 @@ public class GridViewAtivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.girdview_layout);
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_grid_view_frame);
+        ptrLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_grid_view_frame);
         mGridView = (GridViewWithHeaderAndFooter) this.findViewById(R.id.test_grid_view);
         initData();
     }
@@ -45,15 +45,15 @@ public class GridViewAtivity extends AppCompatActivity {
     private void initData() {
         mAdapter = new GridViewAdapter(this, mData);
         mGridView.setAdapter(mAdapter);
-        ptrClassicFrameLayout.postDelayed(new Runnable() {
+        ptrLayout.postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                ptrClassicFrameLayout.autoRefresh(true);
+                ptrLayout.autoRefresh(true);
             }
         }, 150);
 
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+        ptrLayout.setPtrHandler(new PtrDefaultHandler() {
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -66,14 +66,14 @@ public class GridViewAtivity extends AppCompatActivity {
                             mData.add(new String("GridView item  -" + i));
                         }
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.refreshComplete();
-                        ptrClassicFrameLayout.setLoadMoreEnable(true);
+                        ptrLayout.refreshComplete();
+                        ptrLayout.setLoadMoreEnable(true);
                     }
                 }, 1500);
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+        ptrLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
 
             @Override
             public void loadMore() {
@@ -85,7 +85,7 @@ public class GridViewAtivity extends AppCompatActivity {
                             mData.add(new String("GridView item -- add" + page));
                         }
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.loadMoreComplete(true);
+                        ptrLayout.loadMoreComplete(true);
                         page++;
                         Toast.makeText(GridViewAtivity.this, "load more complete", Toast.LENGTH_SHORT).show();
                     }

@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * listView with load more in swipeRefreshLayout
  */
-public class SwipeListViewActivity extends AppCompatActivity{
+public class SwipeListViewActivity extends AppCompatActivity {
     private SwipeRefreshLayout mSryt;
     private ListView mListView;
 

@@ -28,7 +28,7 @@ import java.util.List;
  * RecyclerView with loadmore
  */
 public class RecyclerViewActivity extends AppCompatActivity {
-    PtrClassicFrameLayout ptrClassicFrameLayout;
+    PtrClassicFrameLayout ptrLayout;
     RecyclerView mRecyclerView;
     private List<String> mData = new ArrayList<>();
     private RecyclerAdapter adapter;
@@ -42,7 +42,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview_layout);
 
-        ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_recycler_view_frame);
+        ptrLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_recycler_view_frame);
         mRecyclerView = (RecyclerView) this.findViewById(R.id.test_recycler_view);
         init();
     }
@@ -52,15 +52,15 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mAdapter = new RecyclerAdapterWithHF(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
-        ptrClassicFrameLayout.postDelayed(new Runnable() {
+        ptrLayout.postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                ptrClassicFrameLayout.autoRefresh(true);
+                ptrLayout.autoRefresh(true);
             }
         }, 150);
 
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
+        ptrLayout.setPtrHandler(new PtrDefaultHandler() {
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -73,14 +73,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
                             mData.add(new String("  RecyclerView item  -" + i));
                         }
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.refreshComplete();
-                        ptrClassicFrameLayout.setLoadMoreEnable(true);
+                        ptrLayout.refreshComplete();
+                        ptrLayout.setLoadMoreEnable(true);
                     }
                 }, 1500);
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+        ptrLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
 
             @Override
             public void loadMore() {
@@ -90,7 +90,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     public void run() {
                         mData.add(new String("  RecyclerView item  - add " + page));
                         mAdapter.notifyDataSetChanged();
-                        ptrClassicFrameLayout.loadMoreComplete(true);
+                        ptrLayout.loadMoreComplete(true);
                         page++;
                         Toast.makeText(RecyclerViewActivity.this, "load more complete", Toast.LENGTH_SHORT).show();
                     }
