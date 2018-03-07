@@ -26,6 +26,9 @@ import com.xdroid.lib.ptr.loadmore.OnScrollBottomListener;
 import com.xdroid.lib.ptr.loadmore.RecyclerViewHandler;
 import com.xdroid.lib.ptr.utils.PtrCLog;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 /**
  * This layout view for "Pull to Refresh(Ptr)" support all of the view, you can contain everything you want.
  * support: pull to refresh / release to refresh / auto refresh / keep header view while refreshing / hide header view while refreshing
@@ -890,7 +893,7 @@ public class PtrFrameLayout extends ViewGroup {
         }
         ViewGroup.LayoutParams lp = header.getLayoutParams();
         if (lp == null) {
-            lp = new LayoutParams(-1, -2);
+            lp = new LayoutParams(MATCH_PARENT, WRAP_CONTENT);
             header.setLayoutParams(lp);
         }
         mHeaderView = header;
@@ -904,7 +907,7 @@ public class PtrFrameLayout extends ViewGroup {
 
     @Override
     protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
-        return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        return new LayoutParams(MATCH_PARENT, MATCH_PARENT);
     }
 
     @Override
@@ -1040,7 +1043,7 @@ public class PtrFrameLayout extends ViewGroup {
             mIsRunning = true;
         }
     }
-    
+
     private boolean isLoadingMore = false;
     private boolean isAutoLoadMoreEnable = true;
     private boolean isLoadMoreEnable = false;
@@ -1075,7 +1078,7 @@ public class PtrFrameLayout extends ViewGroup {
         }
 
     }
-    
+
     public void setLoadMoreEnable(boolean loadMoreEnable) {
         if (this.isLoadMoreEnable == loadMoreEnable) {
             return;
