@@ -8,10 +8,6 @@ import android.widget.GridView;
 
 import java.lang.reflect.Field;
 
-/**
- * SwipeRefreshHelper
- * Created by Chanven on 2015-11-4.
- */
 public class SwipeRefreshHelper {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;

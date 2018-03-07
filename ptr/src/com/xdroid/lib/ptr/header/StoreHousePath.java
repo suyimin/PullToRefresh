@@ -4,9 +4,6 @@ import android.util.SparseArray;
 
 import java.util.ArrayList;
 
-/**
- * Created by srain on 11/7/14.
- */
 public class StoreHousePath {
 
     private static final SparseArray<float[]> sPointList;
