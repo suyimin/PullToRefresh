@@ -53,18 +53,17 @@ Android widget with pull to refresh for all the views,and support loadMore for L
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.chanven.lib.cptr.PtrClassicFrameLayout
-        android:id="@+id/test_list_view_frame"
-        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f0f0f0"
-        cube_ptr:ptr_resistance="1.7"
-        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-        cube_ptr:ptr_duration_to_close="200"
-        cube_ptr:ptr_duration_to_close_header="1000"
-        cube_ptr:ptr_keep_header_when_refresh="true"
-        cube_ptr:ptr_pull_to_fresh="false">
+    <com.xdroid.lib.ptr.PtrClassicFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/test_list_view_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f0f0f0"
+            cube_ptr:ptr_duration_to_close="200"
+            cube_ptr:ptr_duration_to_close_header="700"
+            cube_ptr:ptr_keep_header_when_refresh="true"
+            cube_ptr:ptr_pull_to_fresh="false"
+            cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+            cube_ptr:ptr_resistance="1.8">
 
         <ListView
             android:id="@+id/test_list_view"
@@ -76,7 +75,7 @@ Android widget with pull to refresh for all the views,and support loadMore for L
             android:dividerHeight="0.1dp"
             android:fadingEdge="none"
             android:scrollbarStyle="outsideOverlay"/>
-    </com.chanven.lib.cptr.PtrClassicFrameLayout>
+    </com.xdroid.lib.ptr.PtrClassicFrameLayout>
 
 </LinearLayout>
 ```
@@ -91,7 +90,7 @@ public interface PtrHandler {
     /**
      * 检查是否可以执行下来刷新，比如列表为空或者列表第一项在最上面时。
      * <p/>
-     * {@link com.chanven.lib.cptr.PtrDefaultHandler#checkContentCanBePulledDown}
+     * {@link com.xdroid.lib.ptr.PtrDefaultHandler#checkContentCanBePulledDown}
      */
     public boolean checkCanDoRefresh(final PtrFrameLayout frame, final View content, final View header);
 
@@ -122,6 +121,6 @@ public interface PtrHandler {
 *  如果要禁用下拉刷新，则更改`PtrHandler.checkCanDoRefresh`的返回实现即可
 
 
- 具体栗子可参考Demo
+ 具体例子可参考Demo
  
 

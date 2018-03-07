@@ -1,2 +1,2 @@
-include ':cptr'
-include ':cptr_demo'
+include ':ptr'
+include ':ptr_demo'
