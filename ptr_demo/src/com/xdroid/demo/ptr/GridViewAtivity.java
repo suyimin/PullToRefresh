@@ -63,7 +63,7 @@ public class GridViewAtivity extends AppCompatActivity {
                         page = 0;
                         mData.clear();
                         for (int i = 0; i < 40; i++) {
-                            mData.add(new String("GridView item  -" + i));
+                            mData.add(new String("GridView item " + i));
                         }
                         mAdapter.notifyDataSetChanged();
                         ptrLayout.refreshComplete();
@@ -82,12 +82,12 @@ public class GridViewAtivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         for (int i = 0; i < 4; i++) {
-                            mData.add(new String("GridView item -- add" + page));
+                            mData.add(new String("Load more " + page));
                         }
                         mAdapter.notifyDataSetChanged();
                         ptrLayout.loadMoreComplete(true);
                         page++;
-                        Toast.makeText(GridViewAtivity.this, "load more complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GridViewAtivity.this, "Load more complete", Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
             }
@@ -129,10 +129,5 @@ public class GridViewAtivity extends AppCompatActivity {
             textView.setText(datas.get(position));
             return convertView;
         }
-
-        public List<String> getData() {
-            return datas;
-        }
-
     }
 }

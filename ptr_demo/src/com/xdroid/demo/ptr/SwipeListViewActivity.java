@@ -71,7 +71,7 @@ public class SwipeListViewActivity extends AppCompatActivity {
                         mDatas.clear();
                         page = 0;
                         for (int i = 0; i < 17; i++) {
-                            mDatas.add(new String("  SwipeListView item  -" + i));
+                            mDatas.add(new String("SwipeListView item  " + i));
                         }
                         mAdapter.notifyDataSetChanged();
                         mSwipeRefreshHelper.refreshComplete();
@@ -87,37 +87,17 @@ public class SwipeListViewActivity extends AppCompatActivity {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mDatas.add(new String("  SwipeListView item  - add " + page));
+                        mDatas.add(new String("Load more " + page));
                         mAdapter.notifyDataSetChanged();
                         mSwipeRefreshHelper.loadMoreComplete(true);
                         page++;
-                        Toast.makeText(SwipeListViewActivity.this, "load more complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SwipeListViewActivity.this, "Load more complete", Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
             }
         });
 
     }
-
-    OnSwipeRefreshListener mOnSwipeRefreshListener = new OnSwipeRefreshListener() {
-        @Override
-        public void onfresh() {
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mDatas.clear();
-                    page = 0;
-                    for (int i = 0; i < 17; i++) {
-                        mDatas.add(new String("  SwipeListView item  -" + i));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                    mSwipeRefreshHelper.refreshComplete();
-                    mSwipeRefreshHelper.setLoadMoreEnable(true);
-                }
-            }, 1000);
-        }
-    };
-
 
     public class ListViewAdapter extends BaseAdapter {
         private List<String> datas;
@@ -152,10 +132,6 @@ public class SwipeListViewActivity extends AppCompatActivity {
             TextView textView = (TextView) convertView;
             textView.setText(datas.get(position));
             return convertView;
-        }
-
-        public List<String> getData() {
-            return datas;
         }
 
     }

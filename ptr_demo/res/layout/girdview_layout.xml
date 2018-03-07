@@ -17,7 +17,7 @@
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
         cube_ptr:ptr_resistance="1.8" >
 
-        <com.xdroid.lib.cptr.loadmore.GridViewWithHeaderAndFooter
+        <com.xdroid.lib.ptr.loadmore.GridViewWithHeaderAndFooter
             android:id="@+id/test_grid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

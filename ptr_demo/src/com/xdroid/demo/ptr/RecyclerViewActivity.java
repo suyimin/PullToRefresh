@@ -70,7 +70,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                         page = 0;
                         mData.clear();
                         for (int i = 0; i < 17; i++) {
-                            mData.add(new String("  RecyclerView item  -" + i));
+                            mData.add(new String("RecyclerView item  " + i));
                         }
                         mAdapter.notifyDataSetChanged();
                         ptrLayout.refreshComplete();
@@ -88,11 +88,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        mData.add(new String("  RecyclerView item  - add " + page));
+                        mData.add(new String("Load more " + page));
                         mAdapter.notifyDataSetChanged();
                         ptrLayout.loadMoreComplete(true);
                         page++;
-                        Toast.makeText(RecyclerViewActivity.this, "load more complete", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecyclerViewActivity.this, "Load more complete", Toast.LENGTH_SHORT).show();
                     }
                 }, 1000);
             }
